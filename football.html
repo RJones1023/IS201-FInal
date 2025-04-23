@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Football Trivia</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #1e1e1e;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .trivia-container {
+      background-color: #2a2a2a;
+      border: 3px double white;
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px white;
+    }
+
+    h1 {
+      color: #ffd700;
+    }
+
+    .question {
+      font-size: 1.4em;
+      margin: 20px 0;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .choices button {
+      background-color: #333;
+      color: white;
+      padding: 12px;
+      border: 2px solid white;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .choices button:hover {
+      background-color: #444;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: lightgreen;
+    }
+
+    #nextBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ffd700;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+    <div style="text-align: left; padding-bottom: 1rem;">
+        <a href="index.html">About Me</a>
+    </div>
+
+  <div class="trivia-container">
+    <h1>🏈 Football Trivia</h1>
+    <div class="question" id="question">Loading question...</div>
+    <div class="choices" id="choices">
+      <!-- Answer buttons will go here -->
+    </div>
+    <div id="result"></div>
+    <button id="nextBtn" onclick="nextQuestion()">Next Question</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which NFL team has won the most Super Bowls?",
+        options: ["New England Patriots", "Pittsburgh Steelers", "Dallas Cowboys", "San Francisco 49ers"],
+        correct: "New England Patriots"
+      },
+      {
+        question: "Who is the NFL's all-time leading passer (yards)?",
+        options: ["Tom Brady", "Peyton Manning", "Drew Brees", "Aaron Rodgers"],
+        correct: "Tom Brady"
+      },
+      {
+        question: "Which city hosted the first Super Bowl?",
+        options: ["Los Angeles", "Miami", "New Orleans", "Houston"],
+        correct: "Los Angeles"
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    const questionEl = document.getElementById("question");
+    const choicesEl = document.getElementById("choices");
+    const resultEl = document.getElementById("result");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function loadQuestion() {
+      resultEl.textContent = "";
+      nextBtn.style.display = "none";
+      const q = questions[currentQuestion];
+      questionEl.textContent = `Question ${currentQuestion + 1}: ${q.question}`;
+      choicesEl.innerHTML = "";
+
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.onclick = () => handleAnswer(option);
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(selected) {
+      const correct = questions[currentQuestion].correct;
+      if (selected === correct) {
+        resultEl.textContent = "✅ Correct!";
+      } else {
+        resultEl.textContent = `❌ Wrong! The correct answer was: ${correct}`;
+        resultEl.style.color = "tomato";
+      }
+
+      nextBtn.style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        questionEl.textContent = "🎉 You've completed the trivia!";
+        choicesEl.innerHTML = "";
+        resultEl.textContent = "";
+        nextBtn.style.display = "none";
+      }
+    }
+
+    // Initialize
+    loadQuestion();
+  </script>
+</body>
+</html>

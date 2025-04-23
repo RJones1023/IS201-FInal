@@ -1,0 +1,65 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: lightskyblue;
+    color: white;
+    border: 5px solid white;
+    margin: 20px;
+    padding: 20px;
+
+    display: block;                      /* block | inline | flex | grid | none */
+    position: relative;                  /* relative | absolute | fixed | sticky */
+    top: 10px; left: 10px;               /* Used with position */
+    float: right;                        /* right | left | none */
+    clear: both;                         /* clears floated elements */
+    z-index: 10;  
+}
+    
+a:hover {
+    color: navy;               /* Changes color on hover */
+    text-decoration: underline;  /* Adds underline on hover */
+  }
+
+  .button-link {
+    display: inline-block;
+    background-color: #092f57;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .button-link:hover {
+    background-color: #0056b3;
+  }
+  
+
+  img {
+    border: 6px double white; /* thickness, style, and color */
+    padding: 10px;            /* optional: space inside border */
+    background-color: lightskyblue; /* optional: background inside border */
+  }
+
+  .header {
+    background-color: #092f57;
+    color: white;
+    padding: 20px;
+    border: 2px double white;
+    font-size: 18px;
+  }
+  
+  .main-content {
+    background-color: #092f57;
+    color: white;
+    padding: 10px;
+    border: 2px double White;
+    font-size: 18px;
+  }
+
+  .footer {
+    background-color: #092f57;
+    color: white;
+    padding: 10px;
+    border: 2px double White;
+    font-size: 18px;
+  }
